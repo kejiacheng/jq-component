@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" charset="utf-8" content="width=device-width,user-scalable=no，initial-scale=1"/>
+    <Link rel="stylesheet" type="text/css"  href="./pseudo-paging.css"/>
+<body>
+<div class="page"></div>
+<div class="page1"></div>
+<script type="text/javascript" src="./jquery-1.12.1.min.js"></script>
+<script type="text/javascript" src="./pseudo-paging.js"></script>
+<script type="text/javascript">
+  
+  function abc (page) {
+    console.log(page)
+  }
+
+  function cba (page) {
+    console.log('当前页：' + page)
+  }
+  var data = {
+    target: $('.page'),
+    hashPageName: 'page',
+    totalCount: 105,
+    pageCount: 10,
+    offs: 3,
+    cb: abc
+  }
+  var data1 = {
+    target: $('.page1'),
+    hashPageName: 'page100',
+    totalCount: 123,
+    pageCount: 10,
+    cb: cba
+  }
+
+  var a = new pseudoPaging(data)
+
+  var b = new pseudoPaging(data1)
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+.pseudoPaging-wrapper{
+    user-select: none;
+    font-size: 14px;
+}
+.pseudoPaging-wrapper span{
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    margin-right: 10px;
+    height: 30px;
+}
+.pseudoPaging-wrapper i{
+    margin-right: 10px;
+}
+.pseudoPaging-first-page, .pseudoPaging-last-page{
+    width: 55px;
+}
+.pseudoPaging-prev-page, .pseudoPaging-next-page{
+    width: 65px;
+}
+.pseudoPaging-page{
+    width: 30px;
+}
+.pseudoPaging-currentPage{
+    background: #ddd;
+    color: #333;
+}
+.pseudoPaging-disable{
+    color: #e6e6e6;
+    border-color: #e6e6e6;
+    background: #f0f0f0;
+    cursor: not-allowed!important;
+}
