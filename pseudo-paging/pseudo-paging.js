@@ -4,7 +4,15 @@ function pseudoPaging (opts) {
     }else{
         throw('请添加jQuery对象！')
     }
-
+    /*
+        属性
+        target:               JQ DOM
+        hashPageName:         url上对应的hash值
+        totalCount            数据数量
+        pageCount             每页展示的数据
+        offs                  页码偏移量
+        cb                    回调函数(唯一参数：当前页)
+    */
     this.target = opts.target
     this.hashPageName = opts.hashPageName
     this.totalCount = opts.totalCount || 0
