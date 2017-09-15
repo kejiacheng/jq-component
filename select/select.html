@@ -5,8 +5,29 @@
     <title>select</title>
 </head>
 <body>
-
+<div class="select"></div>
 <script src="../jquery-1.12.1.min.js"></script>
 <script src="./select.js"></script>
+<script>
+var data = {
+    target: $('.select'),
+    data: [
+        {
+            text: '123',
+            value: '你好'
+        },
+        {
+            text: '456',
+            value: '你不好'
+        }
+    ],
+    cb: function (value) {
+        console.log(value)
+    }
+}
+
+var a = new keSelect(data)
+    a.reload()
+</script>
 </body>
 </html>
