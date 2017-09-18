@@ -27,7 +27,14 @@ function keSelect (opts) {
 
     var
         that = this
-
+    /*
+     属性
+     target                   JQ DOM
+     data                     数据
+     defaultSelected          默认选中项
+     wrapperClick:            wrapper点击事件
+     cb:                      回调函数(参数：当前选中value，当前选中text，当前index)
+    */
     this.target = opts.target
     this.data = opts.data || []
     this.defaultSelected = opts.defaultSelected || (this.data[0] ? this.data[0].value : '')
