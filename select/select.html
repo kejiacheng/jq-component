@@ -5,7 +5,7 @@
     <title>select</title>
 </head>
 <style>
-    .select{
+    .select, .select1{
         width: 80px;
         height: 36px;
         position: relative;
@@ -14,22 +14,10 @@
 <Link rel="stylesheet" type="text/css"  href="./select.css"/>
 <body>
 <div class="select">
-    <div class="ke-selected-box" data-value="12345">
-        <span class="ke-selected-text">Kjc</span>
-        <span class="down-arrow"></span>
-    </div>
-    <div class="ke-item-wrapper">
-        <div class="ke-item" data-value="asd">
-            12312321312312
-        </div>
-        <div class="ke-item" data-value="asd">
-            12312321
-        </div>
-        <div class="ke-item" data-value="asd">
-            12312321
-        </div>
-    </div>
+
 </div>
+<div class="select1"></div>
+<div class="test" style="margin-top: 100px">阻止冒泡</div>
 <script src="../jquery-1.12.1.min.js"></script>
 <script src="./select.js"></script>
 <script>
@@ -46,18 +34,67 @@ var data = {
         }
     ],
     defaultSelected: '你不好',
-    wrapperClick: function () {
-      console.log('wrapperClick')
-    },
-    cb: function (value) {
+    cb: function (value, text, index) {
         console.log(value)
+        console.log(text)
+        console.log(index)
+    }
+}
+
+var data1 = {
+    target: $('.select1'),
+    data: [
+        {
+            text: '312',
+            value: '你3好'
+        },
+        {
+            text: '432356',
+            value: '321你不好'
+        },
+        {
+            text: '3121432',
+            value: '你323好'
+        },
+        {
+            text: '534432356',
+            value: '321你5不好'
+        },
+        {
+            text: '按时',
+            value: '大神'
+        }
+    ],
+    defaultSelected: '你323好',
+    wrapperClick: function () {
+        var
+            that = this
+        console.log('wrapper')
+        setTimeout(function () {
+            that.data.push({value: 123, text: '你你你爱'})
+            a.reload(that)
+        },500)
+    },
+    cb: function (value, text, index) {
+        console.log(value)
+        console.log(text)
+        console.log(index)
     }
 }
 
 var a = new keSelect(data)
-    a.reload()
-console.log(document.getElementsByClassName('ke-item-wrapper')[0])
-console.log(document.getElementsByClassName('ke-item-wrapper')[0].nodeType)
+var b = new keSelect(data1)
+
+$('.test').click(function (e){
+    data.data.push({value: 123, text: '你你你爱'})
+    a.reload(data)
+    console.log(123)
+    e.stopPropagation()
+})
+    var reload = function () {
+        data.data.push({value: 123, text: '你你你爱'})
+        a.reload(data)
+    }
 </script>
 </body>
 </html>
