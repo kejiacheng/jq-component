@@ -1,0 +1,66 @@
+$borderColor: #ddd;
+$arrowColor: #aaa;
+$hoverItemBgColor: #f1f1f1;
+$selectedItemBgColor: #dedede;
+
+@mixin border{
+  box-sizing: border-box;
+  border: 1px solid $borderColor;
+  border-radius: 4px;
+}
+
+.ke-selected-box{
+  @include border;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  display: table;
+  padding-left: 8px;
+  padding-right: 30px;
+  font-size: 14px;
+  position: relative;
+  .ke-selected-text{
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .down-arrow{
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid $arrowColor;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    right: 10px;
+    transition: all 0.3s ease;
+  }
+  .down-arrow-active{
+    transform: rotate(180deg);
+  }
+}
+.ke-item-wrapper{
+  @include border;
+  position: absolute;
+  top: 100%;
+  max-height: 300px;
+  min-width: 100%;
+  //display: none;
+  overflow: auto;
+  font-size: 14px;
+  .ke-item{
+    box-sizing: border-box;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    padding: 0 8px;
+    &:hover{
+      background: $hoverItemBgColor;
+    }
+  }
+  .ke-selected-item{
+    background: $selectedItemBgColor;
+    color: #333;
+  }
+}

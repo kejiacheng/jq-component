@@ -4,8 +4,32 @@
     <meta charset="UTF-8">
     <title>select</title>
 </head>
+<style>
+    .select{
+        width: 80px;
+        height: 36px;
+        position: relative;
+    }
+</style>
+<Link rel="stylesheet" type="text/css"  href="./select.css"/>
 <body>
-<div class="select"></div>
+<div class="select">
+    <div class="ke-selected-box" data-value="12345">
+        <span class="ke-selected-text">Kjc</span>
+        <span class="down-arrow"></span>
+    </div>
+    <div class="ke-item-wrapper">
+        <div class="ke-item" data-value="asd">
+            12312321312312
+        </div>
+        <div class="ke-item" data-value="asd">
+            12312321
+        </div>
+        <div class="ke-item" data-value="asd">
+            12312321
+        </div>
+    </div>
+</div>
 <script src="../jquery-1.12.1.min.js"></script>
 <script src="./select.js"></script>
 <script>
@@ -21,6 +45,10 @@ var data = {
             value: '你不好'
         }
     ],
+    defaultSelected: '你不好',
+    wrapperClick: function () {
+      console.log('wrapperClick')
+    },
     cb: function (value) {
         console.log(value)
     }
@@ -28,6 +56,8 @@ var data = {
 
 var a = new keSelect(data)
     a.reload()
+console.log(document.getElementsByClassName('ke-item-wrapper')[0])
+console.log(document.getElementsByClassName('ke-item-wrapper')[0].nodeType)
 </script>
 </body>
 </html>
