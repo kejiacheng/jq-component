@@ -24,6 +24,7 @@ function keSelect (opts) {
     }else{
         throw('请添加jQuery对象！')
     }
+
     var
         that = this
 
@@ -33,7 +34,9 @@ function keSelect (opts) {
     this.wrapperClick = opts.wrapperClick || function () {}
     this.cb = opts.cb || function () {}
 
-    function renderBaseHtml() {
+    this.selected = {}
+
+    function renderBaseHtml(that) {
         var
             str = ''
 
@@ -55,50 +58,47 @@ function keSelect (opts) {
         })
     }
 
-    this.renderOption = function(target, data, defaultSelected, cb) {
+    this.renderOption = function(data) {
         var
-            str = '',
-            selectedItem = '',
             dropDownOptions = ''
 
         for (var i = 0; i < data.length; i++) {
-            if (data[i].value === defaultSelected) {
-                target.find('.ke-selected-box').attr('data-value', data[i].value)
-                target.find('.ke-selected-text').text(data[i].text)
+            if (data[i].value === that.defaultSelected || data[i].value === that.selected.value) {
+                that.target.find('.ke-selected-box').attr('data-value', data[i].value)
+                that.target.find('.ke-selected-text').text(data[i].text)
 
                 dropDownOptions +=  '<div class="ke-select-item ke-selected-item" data-value="'+ data[i].value +'">'+
-                                    data[i].text+
-                                '</div>'
+                                        data[i].text+
+                                    '</div>'
             }else{
                 dropDownOptions +=  '<div class="ke-select-item" data-value="'+ data[i].value +'">'+
-                                    data[i].text+
-                                '</div>'
+                                        data[i].text+
+                                    '</div>'
             }
         }
 
-        str = dropDownOptions
-
-        target.find('.ke-select-item-wrapper').html(str)
-
-        target.find('.ke-select-item').unbind('click').click(function (e) {
+        that.target.find('.ke-select-item-wrapper').html(dropDownOptions)
+        that.target.find('.ke-select-item').unbind('click').click(function (e) {
             var
                 value = $(this).data('value'),
                 text = $(this).text()
-            target.find('.ke-selected-box').attr('data-value', value)
+
+            that.selected = {text: text, value: value}
+            that.defaultSelected = null
+            that.target.find('.ke-selected-box').attr('data-value', value)
                 .find('.ke-select-down-arrow').removeClass('ke-select-down-arrow-active')
-            target.find('.ke-selected-text').text(text)
-            target.find('.ke-selected-item').removeClass('ke-selected-item')
+            that.target.find('.ke-selected-text').text(text)
+            that.target.find('.ke-selected-item').removeClass('ke-selected-item')
             $(this).addClass('ke-selected-item')
 
             $('.ke-select-item-wrapper').slideUp('fast')
-            cb(value, text, $(this).index())
+            that.cb(value, text, $(this).index())
         })
     }
 
-    renderBaseHtml()
-    this.renderOption(this.target, this.data, this.defaultSelected, this.cb)
-}
-
-keSelect.prototype.reload = function (opts) {
-    this.renderOption(opts.target, opts.data, opts.defaultSelected, opts.cb)
+    renderBaseHtml(this)
+    this.renderOption(this.data, this)
+    this.reload = function (data) {
+        this.renderOption(data, this)
+    }
 }

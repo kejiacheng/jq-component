@@ -69,11 +69,9 @@ var data1 = {
     wrapperClick: function () {
         var
             that = this
-        console.log('wrapper')
-        setTimeout(function () {
-            that.data.push({value: 123, text: '你你你爱'})
-            a.reload(that)
-        },500)
+
+        that.data.push({value: 123, text: '你你你爱'})
+        b.reload(that.data)
     },
     cb: function (value, text, index) {
         console.log(value)
@@ -91,10 +89,7 @@ $('.test').click(function (e){
     console.log(123)
     e.stopPropagation()
 })
-    var reload = function () {
-        data.data.push({value: 123, text: '你你你爱'})
-        a.reload(data)
-    }
+
 </script>
 </body>
 </html>
