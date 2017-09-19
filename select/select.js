@@ -51,8 +51,7 @@ function keSelect (opts) {
                     '<span class="ke-selected-text"></span>'+
                     '<span class="ke-select-down-arrow"></span>'+
                 '</div>'+
-                '<div class="ke-select-item-wrapper">'+
-                '</div>'
+                '<div class="ke-select-item-wrapper"></div>'
 
         that.target.html(str)
 
